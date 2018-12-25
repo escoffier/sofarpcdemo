@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+    <bean id="customerThreadPool" class="com.alipay.sofa.rpc.server.UserThreadPool" init-method="init">
+        <property name="corePoolSize" value="10"/>
+        <property name="maximumPoolSize" value="10"/>
+        <property name="queueSize" value="5"/>
+        <property name="threadPoolName" value="customerThreadPool_name"/>
+    </bean>
+
+    <bean id="helloSyncServiceImpl" class="com.example.sofaserver.HelloSyncServiceImpl"/>
+    <sofa:service ref="helloSyncServiceImpl" interface="com.example.sofaserver.HelloSyncService">
+        <sofa:binding.bolt/>
+    </sofa:service>
+
+    <bean id="helloCallbackServiceImpl" class="com.example.sofaserver.HelloCallbackServiceImpl"/>
+    <sofa:service ref="helloCallbackServiceImpl" interface="com.example.sofaserver.HelloCallbackService">
+        <sofa:binding.bolt/>
+    </sofa:service>
+
+</beans>
