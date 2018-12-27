@@ -1,4 +1,4 @@
-package com.example.sofarpc1;
+package com.example.sofaserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

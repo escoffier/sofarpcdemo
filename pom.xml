@@ -48,11 +48,36 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>client</id>
+            <properties>
+                <spring.boot.mainclass>sofaclient.ClientApp</spring.boot.mainclass>
+            </properties>
+        </profile>
+        <profile>
+            <id>server</id>
+            <properties>
+                <spring.boot.mainclass>com.example.sofaserver.ServerApplication</spring.boot.mainclass>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>${spring.boot.mainclass}</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

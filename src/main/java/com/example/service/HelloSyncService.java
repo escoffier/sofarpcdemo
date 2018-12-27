@@ -1,4 +1,4 @@
-package com.example.sofaserver;
+package com.example.service;
 
 public interface HelloSyncService {
 

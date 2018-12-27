@@ -10,17 +10,22 @@
         <property name="corePoolSize" value="10"/>
         <property name="maximumPoolSize" value="10"/>
         <property name="queueSize" value="5"/>
-        <property name="threadPoolName" value="customerThreadPool_name"/>
+        <property name="threadPoolName" value="customerThreadPool_robbie"/>
     </bean>
 
-    <bean id="helloSyncServiceImpl" class="com.example.sofaserver.HelloSyncServiceImpl"/>
-    <sofa:service ref="helloSyncServiceImpl" interface="com.example.sofaserver.HelloSyncService">
-        <sofa:binding.bolt/>
+    <bean id="helloSyncServiceImpl" class="com.example.service.HelloSyncServiceImpl"/>
+    <sofa:service ref="helloSyncServiceImpl" interface="com.example.service.HelloSyncService">
+        <sofa:binding.bolt>
+            <sofa:global-attrs serialize-type = "protobuf"/>
+        </sofa:binding.bolt>
     </sofa:service>
 
-    <bean id="helloCallbackServiceImpl" class="com.example.sofaserver.HelloCallbackServiceImpl"/>
-    <sofa:service ref="helloCallbackServiceImpl" interface="com.example.sofaserver.HelloCallbackService">
-        <sofa:binding.bolt/>
+    <bean id="helloCallbackServiceImpl" class="com.example.service.HelloCallbackServiceImpl"/>
+    <sofa:service ref="helloCallbackServiceImpl" interface="com.example.service.HelloCallbackService">
+        <sofa:binding.bolt>
+            <!-- 将线程池设置给一个 Service -->
+            <sofa:global-attrs thread-pool-ref="customerThreadPool"/>
+        </sofa:binding.bolt>
     </sofa:service>
 
 </beans>

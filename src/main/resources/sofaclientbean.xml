@@ -7,18 +7,18 @@
             http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
 
-    <sofa:reference jvm-first="false" id="helloServiceReference" interface="com.example.sofaserver.HelloSyncService">
+    <sofa:reference jvm-first="false" id="helloServiceReference" interface="com.example.service.HelloSyncService">
         <sofa:binding.bolt>
-            <sofa:route target-url="bolt://127.0.0.1:12200"/>
+            <!--<sofa:route target-url="bolt://127.0.0.1:12200"/>-->
         </sofa:binding.bolt>
     </sofa:reference>
 
     <!-- invoke callback -->
     <bean id="callbackImpl" class="sofaclient.CallbackImpl"/>
     <sofa:reference jvm-first="false" id="helloCallbackServiceReference"
-                    interface="com.example.sofaserver.HelloCallbackService">
+                    interface="com.example.service.HelloCallbackService">
         <sofa:binding.bolt>
-            <sofa:global-attrs type="callback" callback-ref="callbackImpl"/>
+            <sofa:global-attrs type="callback" callback-ref="callbackImpl" loadBalancer="roundRobin"/>
         </sofa:binding.bolt>
     </sofa:reference>
 
