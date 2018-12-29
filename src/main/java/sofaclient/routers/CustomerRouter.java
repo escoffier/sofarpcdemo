@@ -23,7 +23,6 @@ public class CustomerRouter extends Router {
 
     @Override
     public boolean needToLoad(ConsumerBootstrap consumerBootstrap) {
-        //return super.needToLoad(consumerBootstrap);
         return true;
     }
 
